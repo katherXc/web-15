@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>今日作業</title>
+  <style>
+    img
+    {
+      width: 200px;
+    }
+
+    .product
+    {
+      margin-bottom: 30px;
+    }
+  </style>
+</head>
+<body>
+  <h3>購物車總額: <span id="total">0</span> 元</h3>
+  <button onclick="clearCart()">清空購物車</button>
+
+  <div class="product">
+    <img src="noodle1.jpg">
+    <p>$50</p>
+    <button onclick="addToCart(50)">加入購物車</button>
+  </div>
+
+  <div class="product">
+    <img src="noodle2.jpg">
+    <p>$120</p>
+    <button onclick="addToCart(120)">加入購物車</button>
+  </div>
+
+  <script>
+    let total = localStorage.getItem("cartTotal");
+
+    if (total === null)
+    {
+      total = 0;
+    }
+    else
+    {
+      total = Number(total);
+    }
+
+    document.getElementById("total").textContent = total;
+
+    function addToCart(price)
+    {
+      total = total + price;
+      localStorage.setItem("cartTotal", total);
+      document.getElementById("total").textContent = total;
+    }
+
+    function clearCart()
+    {
+      total = 0;
+      localStorage.setItem("cartTotal", total);
+      document.getElementById("total").textContent = total;
+    }
+  </script>
+</body>
+</html>
